@@ -49,7 +49,6 @@ h3 {
 h4 {
   font-weight: bold;
   font-size: 14px;
-  color: #4a4a4a;
   color: #A13F54;
   line-height: 17px;
 }
@@ -106,12 +105,10 @@ a {
 }
 
 .orange {
-  background-color: #f5ae23;
   background-color: #999;
 }
 
 .orange-text {
-  color: #f5ae23;
   color: #999;
 }
 
@@ -127,13 +124,11 @@ a {
 }
 
 .dark-gray {
-  background-color: #4a4a4a;
   background-color: #682252;
 }
 
 /* TODO: Replace with image later */
 #header {
-  background-color: #484848;
   background-color: #682252;
 }
 

@@ -5,18 +5,19 @@ var bio = {
     "name": "Janna Brettingen",
     "role": "Code Ninja to be",
     "contacts": {
-        "mobile": "",
+        "mobile": "+49 171 213 35 70",
         "email": "janna@brettingen.com",
-        "twitter": "",
         "github": "jannab",
-        "blog": "",
+        "twitter": "@jannabrettingen",
+        "blog": "myblog.com",
         "location": "Berlin, Germany"
     },
-    "welcomeMessage": "Welcome to my bio etc etc etc",
+    "welcomeMessage": "Hi!<br>I'm looking for a job! Feel free to explore my projects.<br>" +
+        "I would love to hear from you!",
     "skills": [
-        "programming", "planning", "doing", "optimizing", "sleeping"
+        "programming", "planning", "doing", "optimizing"
     ],
-    "bioPic": "images/janna.jpg"
+    "biopic": "images/janna.jpg"
 };
 
 var education = {
@@ -76,7 +77,7 @@ var work = {
 var projects = {
     "projects": [{
         "title": "Online Resume with JavaScript",
-        "dates": 2016,
+        "dates": "2016",
         "description": "Write JavaScript to build this online resume",
         "images": [
             "images/resumee.png",
@@ -87,14 +88,14 @@ var projects = {
 
 /*
 function locationizer(work_obj) {
-	var locationArray = [];
+    var locationArray = [];
 
-	for (job in work_obj.jobs) {
-		var newLocation = work_obj.jobs[job].location;
-		locationArray.push(newLocation);
-	}
+    for (job in work_obj.jobs) {
+        var newLocation = work_obj.jobs[job].location;
+        locationArray.push(newLocation);
+    }
 
-	return locationArray;
+    return locationArray;
 }*/
 
 //console.log(locationizer(work));
@@ -104,7 +105,7 @@ bio.display = function() {
     var formattedRole = getNewString(HTMLheaderRole, bio.role);
     $("#header").prepend([formattedName, formattedRole]);
 
-    var formattedPicture = getNewString(HTMLbioPic, bio.bioPic);
+    var formattedPicture = getNewString(HTMLbioPic, bio.biopic);
     var formattedWelcomeMsg = getNewString(HTMLwelcomeMsg, bio.welcomeMessage);
     $("#header").append(formattedPicture, formattedWelcomeMsg);
 
@@ -186,6 +187,8 @@ work.display = function() {
         $(".work-entry:last").append(
             formattedDates);
 
+        appendString(HTMLworkLocation, work.jobs[job].location, ".work-entry:last");
+
         var formattedDescription = getNewString(HTMLworkDescription, work.jobs[job].description);
         $(".work-entry:last").append(
             formattedDescription);
@@ -219,7 +222,6 @@ projects.display = function() {
 };
 
 education.display = function() {
-    $("#education").append(HTMLschoolStart);
     education.display.schools();
     if (education.onlineCourses.length > 0) {
         education.display.onlineCourses();
@@ -228,6 +230,7 @@ education.display = function() {
 
 education.display.schools = function() {
     for (school in education.schools) {
+        $("#education").append(HTMLschoolStart);
 
         var thisSection = ".education-entry:last";
         var completeHTMLschoolName = HTMLschoolName;
@@ -246,8 +249,9 @@ education.display.schools = function() {
 };
 
 education.display.onlineCourses = function() {
-    $(".education-entry:last").append(HTMLonlineClasses);
+    $("#education").append(HTMLonlineClasses);
     for (course in education.onlineCourses) {
+        $("#education").append(HTMLschoolStart);
         var thisSection = ".education-entry:last";
         var completeOnlineCourseName = getNewString(HTMLonlineTitle, education.onlineCourses[course].title);
         completeOnlineCourseName += getNewString(HTMLonlineSchool, education.onlineCourses[course].school);

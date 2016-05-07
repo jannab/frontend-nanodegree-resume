@@ -24,31 +24,31 @@ var education = {
     "schools": [{
         "name": "FernUniversität Hagen (University)",
         "location": "Berlin, Germany",
-        "degree": "",
-        "majors": "Computer Science",
+        "degree": "no degree yet",
+        "majors": ["Computer Science"],
         "dates": "2015-2016",
-        "url": ""
+        "url": "http://www.fernuni-hagen.de"
     }, {
         "name": "Technische Universität Berlin (University)",
         "location": "Berlin, Germany",
-        "degree": "",
-        "majors": "Mathematics",
+        "degree": "no degree",
+        "majors": ["Mathematics"],
         "dates": "2008 - 2013",
         "url": "http://www.tu-berlin.de"
     }, {
         "name": "Hildegard-Wegscheider-Oberschule (High School)",
         "location": "Berlin, Germany",
         "degree": "Abitur",
-        "majors": "-",
+        "majors": ["-"],
         "dates": "2008",
-        "url": ""
+        "url": "http://www.hwos.de/wordpress/"
     }, {
         "name": "Minato Sohgoh (High School)",
         "location": "Yokohama, Japan",
         "degree": "Student Exchange Program",
-        "majors": "-",
+        "majors": ["-"],
         "dates": "2004 - 2005",
-        "url": ""
+        "url": "http://www.edu.city.yokohama.lg.jp/school/hs/m-sogo/index.cfm/1,0,65,html"
     }],
     "onlineCourses": [{
         "title": "JavaScript Crash Course",
@@ -86,21 +86,8 @@ var projects = {
     }]
 };
 
-/*
-function locationizer(work_obj) {
-    var locationArray = [];
-
-    for (job in work_obj.jobs) {
-        var newLocation = work_obj.jobs[job].location;
-        locationArray.push(newLocation);
-    }
-
-    return locationArray;
-}*/
-
-//console.log(locationizer(work));
-
 bio.display = function() {
+    'use strict';
     var formattedName = getNewString(HTMLheaderName, bio.name);
     var formattedRole = getNewString(HTMLheaderRole, bio.role);
     $("#header").prepend([formattedName, formattedRole]);
@@ -109,156 +96,170 @@ bio.display = function() {
     var formattedWelcomeMsg = getNewString(HTMLwelcomeMsg, bio.welcomeMessage);
     $("#header").append(formattedPicture, formattedWelcomeMsg);
 
-    bio.display.contacts();
-    bio.display.skills();
+    bio.displayContacts();
+    bio.displaySkills();
 };
 
 
-bio.display.skills = function() {
-    if (bio.skills.length > 0) {
+bio.displaySkills = function() {
+    'use strict';
+    if (bio.skills.length) {
         $("#header").append(HTMLskillsStart);
-        for (skill in bio.skills) {
+        for (var skill in bio.skills) {
             // create listitem for skill
-            var formattedSkill = getNewString(HTMLskills, bio.skills[skill]);
-            $("#header").append(formattedSkill);
+            if (bio.skills.hasOwnProperty(skill)) {
+                var formattedSkill = getNewString(HTMLskills, bio.skills[skill]);
+                $("#header").append(formattedSkill);
+            }
+
         }
     }
 };
 
-bio.display.contacts = function() {
-    var formattedContact = "";
-    if (bio.contacts.mobile.length > 0) {
-        formattedContact = getNewString(HTMLmobile, bio.contacts.mobile);
-        $("#topContacts").append(formattedContact);
-        $("#footerContacts").append(formattedContact);
+bio.displayContacts = function() {
+    'use strict';
+    if (bio.contacts.mobile.length) {
+        bio.displayContact(HTMLmobile, bio.contacts.mobile);
     }
-    if (bio.contacts.email.length > 0) {
-        formattedContact = getNewString(HTMLemail, bio.contacts.email);
-        $("#topContacts").append(formattedContact);
-        $("#footerContacts").append(formattedContact);
+    if (bio.contacts.email.length) {
+        bio.displayContact(HTMLemail, bio.contacts.email);
     }
-    if (bio.contacts.twitter.length > 0) {
-        formattedContact = getNewString(HTMLtwitter, bio.contacts.twitter);
-        $("#topContacts").append(formattedContact);
-        $("#footerContacts").append(formattedContact);
+    if (bio.contacts.twitter.length) {
+        bio.displayContact(HTMLtwitter, bio.contacts.twitter);
     }
-    if (bio.contacts.github.length > 0) {
-        formattedContact = getNewString(HTMLgithub, bio.contacts.github);
-        $("#topContacts").append(formattedContact);
-        $("#footerContacts").append(formattedContact);
+    if (bio.contacts.github.length) {
+        bio.displayContact(HTMLgithub, bio.contacts.github);
     }
-    if (bio.contacts.blog.length > 0) {
-        formattedContact = getNewString(HTMLblog, bio.contacts.blog);
-        $("#topContacts").append(formattedContact);
-        $("#footerContacts").append(formattedContact);
+    if (bio.contacts.blog.length) {
+        bio.displayContact(HTMLblog, bio.contacts.blog);
     }
-    if (bio.contacts.location.length > 0) {
-        formattedContact = getNewString(HTMLlocation, bio.contacts.location);
-        $("#topContacts").append(formattedContact);
-        $("#footerContacts").append(formattedContact);
+    if (bio.contacts.location.length) {
+        bio.displayContact(HTMLlocation, bio.contacts.location);
     }
 };
 
+bio.displayContact = function(oldString, newValue) {
+    'use strict';
+    var formattedContact = getNewString(oldString, newValue);
+    $("#topContacts").append(formattedContact);
+    $("#footerContacts").append(formattedContact);
+};
+
 function getNewString(oldString, newValue) {
+    'use strict';
     return oldString.replace("%data%", newValue);
 }
 
 function appendString(oldString, newValue, section) {
-    if (newValue.length > 0) {
+    'use strict';
+    if (newValue.length) {
         $(section).append(getNewString(oldString, newValue));
     }
 }
 
 
 work.display = function() {
-    for (job in work.jobs) {
-        // create new div for work experience
-        $("#workExperience").append(HTMLworkStart);
-        // concat employer and title
-        //var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-        //var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-        var formattedEmployer = getNewString(HTMLworkEmployer, work.jobs[job].employer);
-        var formattedTitle = getNewString(HTMLworkTitle, work.jobs[job].title);
-        var formattedEmployerTitle = formattedEmployer + formattedTitle;
-        $(".work-entry:last").append(
-            formattedEmployerTitle);
+    'use strict';
+    for (var job in work.jobs) {
+        if (work.jobs.hasOwnProperty(job)) {
+            // create new div for work experience
+            $("#workExperience").append(HTMLworkStart);
+            // concat employer and title
+            var formattedEmployer = getNewString(HTMLworkEmployer, work.jobs[job].employer);
+            var formattedTitle = getNewString(HTMLworkTitle, work.jobs[job].title);
+            var formattedEmployerTitle = formattedEmployer + formattedTitle;
+            $(".work-entry:last").append(
+                formattedEmployerTitle);
 
-        var formattedDates = getNewString(HTMLworkDates, work.jobs[job].dates);
-        $(".work-entry:last").append(
-            formattedDates);
+            var formattedDates = getNewString(HTMLworkDates, work.jobs[job].dates);
+            $(".work-entry:last").append(
+                formattedDates);
 
-        appendString(HTMLworkLocation, work.jobs[job].location, ".work-entry:last");
+            appendString(HTMLworkLocation, work.jobs[job].location, ".work-entry:last");
 
-        var formattedDescription = getNewString(HTMLworkDescription, work.jobs[job].description);
-        $(".work-entry:last").append(
-            formattedDescription);
+            var formattedDescription = getNewString(HTMLworkDescription, work.jobs[job].description);
+            $(".work-entry:last").append(
+                formattedDescription);
+        }
     }
 };
 
 projects.display = function() {
-    for (project in projects.projects) {
-        // create new div for projects
-        $("#projects").append(HTMLprojectStart);
+    'use strict';
+    for (var project in projects.projects) {
+        if (projects.projects.hasOwnProperty(project)) {
+            // create new div for projects
+            $("#projects").append(HTMLprojectStart);
 
-        var formattedTitle = getNewString(HTMLprojectTitle, projects.projects[project].title);
-        $(".project-entry:last").append(
-            formattedTitle);
+            var formattedTitle = getNewString(HTMLprojectTitle, projects.projects[project].title);
+            $(".project-entry:last").append(
+                formattedTitle);
 
-        var formattedDates = getNewString(HTMLprojectDates, projects.projects[project].dates);
-        $(".project-entry:last").append(
-            formattedDates);
+            var formattedDates = getNewString(HTMLprojectDates, projects.projects[project].dates);
+            $(".project-entry:last").append(
+                formattedDates);
 
-        var formattedDescription = getNewString(HTMLprojectDescription, projects.projects[project].description);
-        $(".project-entry:last").append(
-            formattedDescription);
+            var formattedDescription = getNewString(HTMLprojectDescription, projects.projects[project].description);
+            $(".project-entry:last").append(
+                formattedDescription);
 
-        if (projects.projects[project].images.length > 0) {
-            for (image in projects.projects[project].images) {
-                var formattedImage = getNewString(HTMLprojectImage, projects.projects[project].images[image]);
-                $(".project-entry:last").append(formattedImage);
+            if (projects.projects[project].images.length) {
+                for (var image in projects.projects[project].images) {
+                    if (projects.projects[project].images.hasOwnProperty(image)) {
+                        var formattedImage = getNewString(HTMLprojectImage, projects.projects[project].images[image]);
+                        $(".project-entry:last").append(formattedImage);
+                    }
+                }
             }
         }
     }
 };
 
 education.display = function() {
-    education.display.schools();
-    if (education.onlineCourses.length > 0) {
-        education.display.onlineCourses();
+    'use strict';
+    education.displaySchools();
+    if (education.onlineCourses.length) {
+        education.displayOnlineCourses();
     }
 };
 
-education.display.schools = function() {
-    for (school in education.schools) {
-        $("#education").append(HTMLschoolStart);
+education.displaySchools = function() {
+    'use strict';
+    for (var school in education.schools) {
+        if (education.schools.hasOwnProperty(school)) {
+            $("#education").append(HTMLschoolStart);
 
-        var thisSection = ".education-entry:last";
-        var completeHTMLschoolName = HTMLschoolName;
-        if (education.schools[school].url.length > 0) {
-            completeHTMLschoolName = HTMLschoolName.replace("#", education.schools[school].url);
-        }
-        if (education.schools[school].degree.length > 0) {
-            completeHTMLschoolName = completeHTMLschoolName + getNewString(HTMLschoolDegree, education.schools[school].degree);
-        }
+            var thisSection = ".education-entry:last";
+            var completeHTMLschoolName = HTMLschoolName;
+            if (education.schools[school].url.length) {
+                completeHTMLschoolName = HTMLschoolName.replace("#", education.schools[school].url);
+            }
+            if (education.schools[school].degree.length) {
+                completeHTMLschoolName = completeHTMLschoolName + getNewString(HTMLschoolDegree, education.schools[school].degree);
+            }
 
-        appendString(completeHTMLschoolName, education.schools[school].name, thisSection);
-        appendString(HTMLschoolDates, education.schools[school].dates, thisSection);
-        appendString(HTMLschoolLocation, education.schools[school].location, thisSection);
-        appendString(HTMLschoolMajor, education.schools[school].majors, thisSection);
+            appendString(completeHTMLschoolName, education.schools[school].name, thisSection);
+            appendString(HTMLschoolDates, education.schools[school].dates, thisSection);
+            appendString(HTMLschoolLocation, education.schools[school].location, thisSection);
+            appendString(HTMLschoolMajor, education.schools[school].majors, thisSection);
+        }
     }
 };
 
-education.display.onlineCourses = function() {
+education.displayOnlineCourses = function() {
+    'use strict';
     $("#education").append(HTMLonlineClasses);
-    for (course in education.onlineCourses) {
-        $("#education").append(HTMLschoolStart);
-        var thisSection = ".education-entry:last";
-        var completeOnlineCourseName = getNewString(HTMLonlineTitle, education.onlineCourses[course].title);
-        completeOnlineCourseName += getNewString(HTMLonlineSchool, education.onlineCourses[course].school);
-        $(".education-entry:last").append(completeOnlineCourseName);
-        appendString(HTMLonlineDates, education.onlineCourses[course].date, thisSection);
-        var urlHTMLonlineURL = HTMLonlineURL.replace("#", education.onlineCourses[course].url);
-        appendString(urlHTMLonlineURL, education.onlineCourses[course].url, thisSection);
+    for (var course in education.onlineCourses) {
+        if (education.onlineCourses.hasOwnProperty(course)) {
+            $("#education").append(HTMLschoolStart);
+            var thisSection = ".education-entry:last";
+            var completeOnlineCourseName = getNewString(HTMLonlineTitle, education.onlineCourses[course].title);
+            completeOnlineCourseName += getNewString(HTMLonlineSchool, education.onlineCourses[course].school);
+            $(".education-entry:last").append(completeOnlineCourseName);
+            appendString(HTMLonlineDates, education.onlineCourses[course].date, thisSection);
+            var urlHTMLonlineURL = HTMLonlineURL.replace("#", education.onlineCourses[course].url);
+            appendString(urlHTMLonlineURL, education.onlineCourses[course].url, thisSection);
+        }
     }
 };
 

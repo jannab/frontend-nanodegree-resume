@@ -3,13 +3,13 @@ Builds with helper.js the html for an online resume webpage
  */
 var bio = {
     "name": "Janna Brettingen",
-    "role": "Code Ninja to be",
+    "role": "",
     "contacts": {
-        "mobile": "+49 171 213 35 70",
+        "mobile": "",
         "email": "janna@brettingen.com",
-        "github": "jannab",
-        "twitter": "@jannabrettingen",
-        "blog": "myblog.com",
+        "github": '<a href="https://github.com/jannab" target="_blank" class="white-text" style="display: inline">jannab</a>',
+        "twitter": "",
+        "blog": "",
         "location": "Berlin, Germany"
     },
     "welcomeMessage": "Hi!<br>I'm looking for a job! Feel free to explore my projects.<br>" +
@@ -24,14 +24,21 @@ var education = {
     "schools": [{
         "name": "FernUniversität Hagen (University)",
         "location": "Berlin, Germany",
-        "degree": "no degree yet",
+        "degree": "",
         "majors": ["Computer Science"],
-        "dates": "2015-2016",
+        "dates": "2015-2018",
+        "url": "http://www.fernuni-hagen.de"
+    }, {
+        "name": "FernUniversität Hagen (University)",
+        "location": "Berlin, Germany",
+        "degree": "",
+        "majors": ["Business Informatics"],
+        "dates": "2013-2017",
         "url": "http://www.fernuni-hagen.de"
     }, {
         "name": "Technische Universität Berlin (University)",
         "location": "Berlin, Germany",
-        "degree": "no degree",
+        "degree": "",
         "majors": ["Mathematics"],
         "dates": "2008 - 2013",
         "url": "http://www.tu-berlin.de"
@@ -50,12 +57,7 @@ var education = {
         "dates": "2004 - 2005",
         "url": "http://www.edu.city.yokohama.lg.jp/school/hs/m-sogo/index.cfm/1,0,65,html"
     }],
-    "onlineCourses": [{
-        "title": "JavaScript Crash Course",
-        "school": "Udacity",
-        "date": "2016",
-        "url": "http://udacity.com/course/ud804"
-    }]
+    "onlineCourses": []
 };
 
 var work = {
@@ -64,24 +66,32 @@ var work = {
         "title": "Assistant in Accounting Departement",
         "dates": "May 2013 - September 2013",
         "location": "Berlin, Germany",
-        "description": "bla blub blub blub"
+        "description": ""
     }, {
         "employer": "GRAVIS Computervertriebsgesellschaft mbH",
         "title": "Assistant in Administration Departement",
         "dates": "October 2007 - March 2012",
         "location": "Berlin, Germany",
-        "description": "bla blub blub blub"
+        "description": ""
     }]
 };
 
 var projects = {
     "projects": [{
-        "title": "Online Resume with JavaScript",
+        "title": '<a href="https://github.com/jannab/frontend-nanodegree-resume" target="_blank">Online Resume with JavaScript</a>',
         "dates": "2016",
         "description": "Write JavaScript to build this online resume",
         "images": [
             "images/resumee.png",
             "images/code.png"
+        ]
+    }, {
+        "title": '<a href="https://github.com/jannab/fill-in-the-blanks-game" target="_blank">Fill in the Blanks Game with Python</a>',
+        "dates": "2016",
+        "description": "Write Python to build this fill in the blanks game.",
+        "images": [
+            "images/project2.1.png",
+            "images/project2.3.png"
         ]
     }]
 };

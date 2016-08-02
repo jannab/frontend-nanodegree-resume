@@ -3,7 +3,7 @@ Builds with helper.js the html for an online resume webpage
  */
 var bio = {
     "name": "Janna Brettingen",
-    "role": "",
+    "role": "Machine Learning Engineer",
     "contacts": {
         "mobile": "",
         "email": "janna@brettingen.com",
@@ -12,10 +12,9 @@ var bio = {
         "blog": "",
         "location": "Berlin, Germany"
     },
-    "welcomeMessage": "Hi!<br>I'm looking for a job! Feel free to explore my projects.<br>" +
-        "I would love to hear from you!",
+    "welcomeMessage": "Hi!<br>I am a student of Udacity's Machine Learning Engineer Nanodegree planning to graduate before the end of August. Currently based in Berlin, I am willing to relocate to SF Bay Area. No Visa needed.",
     "skills": [
-        "programming", "planning", "doing", "optimizing"
+        "Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "python / NumPy / Panda / sklearn"
     ],
     "biopic": "images/janna.jpg"
 };
@@ -25,28 +24,21 @@ var education = {
         "name": "FernUniversität Hagen (University)",
         "location": "Berlin, Germany",
         "degree": "",
-        "majors": ["Computer Science"],
-        "dates": "2015-2018",
-        "url": "http://www.fernuni-hagen.de"
-    }, {
-        "name": "FernUniversität Hagen (University)",
-        "location": "Berlin, Germany",
-        "degree": "",
-        "majors": ["Business Informatics"],
-        "dates": "2013-2017",
+        "majors": ["Business Informatics (70 credits)"],
+        "dates": "2013-2016",
         "url": "http://www.fernuni-hagen.de"
     }, {
         "name": "Technische Universität Berlin (University)",
         "location": "Berlin, Germany",
         "degree": "",
-        "majors": ["Mathematics"],
+        "majors": ["Mathematics (84 credits)"],
         "dates": "2008 - 2013",
         "url": "http://www.tu-berlin.de"
     }, {
         "name": "Hildegard-Wegscheider-Oberschule (High School)",
         "location": "Berlin, Germany",
         "degree": "Abitur",
-        "majors": ["-"],
+        "majors": ["Mathematics, Chemistry"],
         "dates": "2008",
         "url": "http://www.hwos.de/wordpress/"
     }, {
@@ -78,20 +70,25 @@ var work = {
 
 var projects = {
     "projects": [{
-        "title": '<a href="https://github.com/jannab/frontend-nanodegree-resume" target="_blank">Online Resume with JavaScript</a>',
-        "dates": "2016",
-        "description": "Write JavaScript to build this online resume",
+        "title": '<a href="https://jannab.github.io/smartcab/" target="_blank">Train a Smartcab to Drive</a>',
+        "dates": "July 2016",
+        "description": "Trained a smartcab, a self-driving car, to follow the traffic rules using reinforcement learning techniques and python.",
         "images": [
-            "images/resumee.png",
-            "images/code.png"
+            "images/smartcab_screenshot.png"
         ]
     }, {
-        "title": '<a href="https://github.com/jannab/fill-in-the-blanks-game" target="_blank">Fill in the Blanks Game with Python</a>',
-        "dates": "2016",
-        "description": "Write Python to build this fill in the blanks game.",
+        "title": '<a href="https://jannab.github.io/customer_segments/" target="_blank">Creating Customer Segments</a>',
+        "dates": "July 2016",
+        "description": "Created customer segments for a wholesale distributor in Lisbon, Portugal using unsupervised learning techniques and python.",
         "images": [
-            "images/project2.1.png",
-            "images/project2.3.png"
+            "images/possible-379215_960_720.jpg"
+        ]
+    }, {
+        "title": '<a href="https://jannab.github.io/student_intervention/" target="_blank">Build a Student Intervention System</a>',
+        "dates": "July 2016",
+        "description": "Helped a local school district to identify students who need intervention before they drop out of school using supervised learning techniques and python.",
+        "images": [
+            "images/customer_segments_image.png"
         ]
     }]
 };

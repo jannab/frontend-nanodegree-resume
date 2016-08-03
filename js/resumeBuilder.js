@@ -3,7 +3,7 @@ Builds with helper.js the html for an online resume webpage
  */
 var bio = {
     "name": "Janna Brettingen",
-    "role": "Machine Learning Engineer",
+    "role": "",
     "contacts": {
         "mobile": "",
         "email": "janna@brettingen.com",
@@ -12,9 +12,9 @@ var bio = {
         "blog": "",
         "location": "Berlin, Germany"
     },
-    "welcomeMessage": "Hi!<br>I am a student of Udacity's Machine Learning Engineer Nanodegree planning to graduate before the end of August. Currently based in Berlin, I am willing to relocate to SF Bay Area. No Visa needed.",
+    "welcomeMessage": "Hi!<br>I'm looking for a job! Feel free to explore my projects.<br> I would love to hear from you!",
     "skills": [
-        "Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "python / NumPy / Panda / sklearn"
+        "Java", "Python", "SQL", "Eclipse"
     ],
     "biopic": "images/janna.jpg"
 };

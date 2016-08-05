@@ -79,22 +79,25 @@ var work = {
 
 var projects = {
     "projects": [{
-        "title": '<a href="https://jannab.github.io/smartcab/" target="_blank">Train a Smartcab to Drive</a>',
+        "title": 'Train a Smartcab to Drive',
         "dates": "July 2016",
+        "url": "https://jannab.github.io/smartcab/",
         "description": "Trained a smartcab, a self-driving car, to follow the traffic rules using reinforcement learning techniques and python.",
         "images": [
             "images/smartcab_screenshot.png"
         ]
     }, {
-        "title": '<a href="https://jannab.github.io/customer_segments/" target="_blank">Creating Customer Segments</a>',
+        "title": 'Creating Customer Segments',
         "dates": "July 2016",
+        "url": "https://jannab.github.io/customer_segments/",
         "description": "Created customer segments for a wholesale distributor in Lisbon, Portugal using unsupervised learning techniques and python.",
         "images": [
             "images/possible-379215_960_720.jpg"
         ]
     }, {
-        "title": '<a href="https://jannab.github.io/student_intervention/" target="_blank">Build a Student Intervention System</a>',
+        "title": 'Build a Student Intervention System',
         "dates": "July 2016",
+        "url": "https://jannab.github.io/student_intervention/",
         "description": "Helped a local school district to identify students who need intervention before they drop out of school using supervised learning techniques and python.",
         "images": [
             "images/customer_segments_image.png"
@@ -211,7 +214,12 @@ projects.display = function() {
             // create new div for projects
             $("#projects").append(HTMLprojectStart);
 
-            var formattedTitle = getNewString(HTMLprojectTitle, projects.projects[project].title);
+            var completeHTMLprojectTitle = HTMLprojectTitle;
+            if (projects.projects[project].url.length) {
+                completeHTMLprojectTitle = HTMLprojectTitle.replace("#", projects.projects[project].url);
+            }
+
+            var formattedTitle = getNewString(completeHTMLprojectTitle, projects.projects[project].title);
             $(".project-entry:last").append(
                 formattedTitle);
 

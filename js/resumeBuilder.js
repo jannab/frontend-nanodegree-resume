@@ -14,18 +14,25 @@ var bio = {
     },
     "welcomeMessage": "Hi!<br>I'm looking for a job! Feel free to explore my projects.<br> I would love to hear from you!",
     "skills": [
-        "Java", "Python", "SQL", "Eclipse"
+        "Languages: Python, Java, C++, Objective-C", "Frameworks/Libraries: NumPy, Panda, Scikit-Learn", "Other: Git/GitHub, MongoDB (beginner)"
     ],
     "biopic": "images/janna.jpg"
 };
 
 var education = {
     "schools": [{
+        "name": "Udacity",
+        "location": "",
+        "degree": "Machine Learning Engineer Nanodegree",
+        "majors": ["Machine Learning"],
+        "dates": "2016 (in progress)",
+        "url": "https://www.udacity.com/course/machine-learning-engineer-nanodegree-by-google--nd009"
+    }, {
         "name": "FernUniversität Hagen (University)",
         "location": "Berlin, Germany",
-        "degree": "",
-        "majors": ["Business Informatics (70 credits)"],
-        "dates": "2013-2016",
+        "degree": "Bachelor of Science",
+        "majors": ["Business Information Systems"],
+        "dates": "2013-2017 (expected)",
         "url": "http://www.fernuni-hagen.de"
     }, {
         "name": "Technische Universität Berlin (University)",
@@ -37,7 +44,7 @@ var education = {
     }, {
         "name": "Hildegard-Wegscheider-Oberschule (High School)",
         "location": "Berlin, Germany",
-        "degree": "Abitur",
+        "degree": "Abitur (1,8)",
         "majors": ["Mathematics, Chemistry"],
         "dates": "2008",
         "url": "http://www.hwos.de/wordpress/"
@@ -54,17 +61,19 @@ var education = {
 
 var work = {
     "jobs": [{
-        "employer": "GRAVIS Computervertriebsgesellschaft mbH",
-        "title": "Assistant in Accounting Departement",
+        "employer": 'GRAVIS Computervertriebsgesellschaft mbH',
+        "title": "Assistant Bookkeeper",
         "dates": "May 2013 - September 2013",
+        "url": "https://www.gravis.de",
         "location": "Berlin, Germany",
-        "description": ""
+        "description": "<ul><li>- Automized some processes by creating VBA macros for excel.</li><li>- Tested new software features of ERP system.</li><li>- Dealt with financial paperwork and filing.</li><li>- Payed supplier invoices.</li></ul>"
     }, {
-        "employer": "GRAVIS Computervertriebsgesellschaft mbH",
-        "title": "Assistant in Administration Departement",
+        "employer": 'GRAVIS Computervertriebsgesellschaft mbH',
+        "title": "Office Assistant",
         "dates": "October 2007 - March 2012",
+        "url": "https://www.gravis.de",
         "location": "Berlin, Germany",
-        "description": ""
+        "description": "<ul><li>- Predicted electric energy consumption of 30 stores based on previous data and monitored costs.</li><li>- Predicted printer usage of the whole company based on previous data and monitored costs.</li><li>- Organized education discount project.</li></ul>"
     }]
 };
 
@@ -172,7 +181,11 @@ work.display = function() {
             // create new div for work experience
             $("#workExperience").append(HTMLworkStart);
             // concat employer and title
-            var formattedEmployer = getNewString(HTMLworkEmployer, work.jobs[job].employer);
+            var completeHTMLworkEmployer = HTMLworkEmployer;
+            if (work.jobs[job].url.length) {
+                completeHTMLworkEmployer = HTMLworkEmployer.replace("#", work.jobs[job].url);
+            }
+            var formattedEmployer = getNewString(completeHTMLworkEmployer, work.jobs[job].employer);
             var formattedTitle = getNewString(HTMLworkTitle, work.jobs[job].title);
             var formattedEmployerTitle = formattedEmployer + formattedTitle;
             $(".work-entry:last").append(

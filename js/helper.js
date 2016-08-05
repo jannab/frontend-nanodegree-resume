@@ -17,6 +17,7 @@ var HTMLheaderRole = '<span class="role">%data%</span><hr>';
 
 var HTMLcontactGeneric = '<li class="flex-item"><span class="gray-text">%contact%</span><span class="white-text">%data%</span></li>';
 var HTMLmobile = '<li class="flex-item"><span class="gray-text">mobile</span><span class="white-text">%data%</span></li>';
+var HTMLlinkedin = '<li class="flex-item"><span class="gray-text">linkedin</span><span class="white-text">%data%</span></li>';
 var HTMLemail = '<li class="flex-item"><span class="gray-text">email</span><span class="white-text">%data%</span></li>';
 var HTMLtwitter = '<li class="flex-item"><span class="gray-text">twitter</span><span class="white-text">%data%</span></li>';
 var HTMLgithub = '<li class="flex-item"><span class="gray-text">github</span><span class="white-text">%data%</span></li>';

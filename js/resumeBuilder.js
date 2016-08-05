@@ -6,7 +6,8 @@ var bio = {
     "role": "",
     "contacts": {
         "mobile": "",
-        "email": "janna@brettingen.com",
+        "linkedin": '<a href="https://de.linkedin.com/in/jannabrettingen" target="_blank" class="white-text" style="display: inline">jannabrettingen</a>',
+        "email": '<a href="mailto:janna@brettingen.com" target="_blank" class="white-text" style="display: inline">janna@brettingen.com</a>',
         "github": '<a href="https://github.com/jannab" target="_blank" class="white-text" style="display: inline">jannab</a>',
         "twitter": "",
         "blog": "",
@@ -142,6 +143,9 @@ bio.displayContacts = function() {
     }
     if (bio.contacts.email.length) {
         bio.displayContact(HTMLemail, bio.contacts.email);
+    }
+    if (bio.contacts.linkedin.length) {
+        bio.displayContact(HTMLlinkedin, bio.contacts.linkedin);
     }
     if (bio.contacts.twitter.length) {
         bio.displayContact(HTMLtwitter, bio.contacts.twitter);
